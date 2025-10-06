@@ -87,6 +87,11 @@ This shows the PWM values being sent to each motor.
 - Add autonomous modes  
 
 ---
+##Reference Mterial Used
+https://youtu.be/wwQQnSWqB7A?si=7cMZMWFLcSOIgnyS
+https://youtu.be/XG4cODYVbJk?si=Fb91N3qoRo44Q5Th
+
+---
 
 
 
