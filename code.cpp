@@ -3,14 +3,14 @@
 //also it contains the ps4 library with helps to get the values frm the ps4
 
 USBHost myusb;
-BluetoothController bluet(myusb);
-PS4Controller PS4(bluet);
+JoystickController joystick1(myusb);
+BluetoothController bluet(myusb);  
 
 //matrix for the inverse kinematics 
 float matrix[3][3] = {
     { 0.58, -0.33, 0.58 },
     { -0.58, -0.33, 0.33 },
-    { 0.0,   0.67,  0.33 }
+    { 0.0,   0.67,  0.33 }\
 };
 
 struct WheelSpeeds {
@@ -52,7 +52,7 @@ int Getting_PWM(float val) {
 void setMotor(int pwmPin, int dirPin, int val) {
     if (val >= 0) {
         digitalWrite(dirPin, HIGH);
-        analogWrite(pwmPin, val);
+        analogWrite(pwmPin, val-);
     } else {
         digitalWrite(dirPin, LOW);
         analogWrite(pwmPin, -val);
@@ -69,17 +69,19 @@ void setup() {
     pinMode(M2_DIR, OUTPUT);
     pinMode(M3_PWM, OUTPUT);
     pinMode(M3_DIR, OUTPUT);
+
+    myusb.begin();
 }
 
 
 void loop() {
     myusb.Task();
 
-    if (PS4.connected()) {
+    if (joystick1.available()) {
         //getting the valu from the joy stick  
-        int joyX = PS4.getAnalogHat(LeftHatX);  
-        int joyY = PS4.getAnalogHat(LeftHatY);  
-        int joyRot = PS4.getAnalogHat(RightHatX);
+        int joyX =joystick1.getAxis(0);   
+        int joyY =joystick1.getAxis(1); 
+        int joyRot =joystick1.getAxis(2); 
         //sending the raw value from the joystick to the mapping function  
         float ax = mapJoystick(joyX);
         float ay = mapJoystick(-joyY); 
@@ -95,5 +97,10 @@ void loop() {
         Serial.print("f1: "); Serial.print(pwm1);
         Serial.print("  f2: "); Serial.print(pwm2);
         Serial.print("  f3: "); Serial.println(pwm3);
+        Serial.print("  :joyx "); Serial.println(joyX);
+        Serial.print("  :joyy "); Serial.println(joyY);
+        Serial.print("  :joyrot"); Serial.println(joyRot);
+        delay(2000);
+
     }
 }
