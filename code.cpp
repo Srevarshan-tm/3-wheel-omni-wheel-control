@@ -26,7 +26,7 @@ const int M3_DIR = 10;
 //defining the constant 
 const int DeadZONE = 20;
 const int MAX_JOY  = 127;   
-const int MAX_PWM  = 255;   
+const int MAX_PWM  = 75;   
 
 
 WheelSpeeds speed_set(float ax, float ay, float w) {
