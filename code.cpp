@@ -17,12 +17,12 @@ struct WheelSpeeds {
     float f1, f2, f3;
 };
 //defining the pins 
-const int M1_PWM = 3;
+const int M1_PWM = 2;
 const int M1_DIR = 4;
-const int M2_PWM = 5;
-const int M2_DIR = 6;
-const int M3_PWM = 9;
-const int M3_DIR = 10;
+const int M2_PWM = 3;
+const int M2_DIR = 5;
+const int M3_PWM = 23;
+const int M3_DIR = 21;
 //defining the constant 
 const int DeadZONE = 20;
 const int MAX_JOY  = 127;   
