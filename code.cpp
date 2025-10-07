@@ -82,6 +82,15 @@ void loop() {
         int joyX =joystick1.getAxis(0);   
         int joyY =joystick1.getAxis(1); 
         int joyRot =joystick1.getAxis(2); 
+    }
+    // If joystick is near center → stop all motors
+    if (abs(joyX) < 20 && abs(joyY) < 20 && abs(joyRot) < 20){
+        setMotor(M1_PWM, M1_DIR, 0);
+        setMotor(M2_PWM, M2_DIR, 0);
+        setMotor(M3_PWM, M3_DIR, 0);
+        Serial.println("Joystick in neutral zone — Motors stopped");
+        return;
+    }
         //sending the raw value from the joystick to the mapping function  
         float ax = mapJoystick(joyX);
         float ay = mapJoystick(-joyY); 
