@@ -31,9 +31,9 @@ const int MAX_PWM  = 75;
 WheelSpeeds speed_set(float ax, float ay, float w) {
     //calculating the speed using the matrix that is defined  at the start
     WheelSpeeds ws;
-    ws.f1 = ax * matrix[0][0] + ay * matrix[0][1] + w * matrix[0][2];
-    ws.f2 = ax * matrix[1][0] + ay * matrix[1][1] + w * matrix[1][2];
-    ws.f3 = ax * matrix[2][0] + ay * matrix[2][1] + w * matrix[2][2];
+    ws.f1 = ax *0.58 + ay * -0.33 + w * 0.50;
+    ws.f2 = ax * -0.58 + ay * -0.33 + w * 0.58;
+    ws.f3 = ax * 0.0 + ay * 0.67 +/ w * 0.33;
     return ws;
 }
 //maping the joystick value with the max _joy
@@ -47,8 +47,8 @@ float normalizeJoystick(int val) {
 }
 //getting the pwm val and also setting the direction of the  motor
 int Getting_PWM(float val) {
-    if (val > 1) val = 1;
-    if (val < -1) val = -1;
+    if (val > 1) val = 1*val;
+    if (val < -1) val = -1*val;
     return (int)(val * MAX_PWM);
 }
 //here i am settind the speed of the motors connected
